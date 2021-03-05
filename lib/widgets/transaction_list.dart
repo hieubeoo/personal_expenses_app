@@ -18,16 +18,16 @@ class TransactionList extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   decoration: BoxDecoration(
                       border: Border.all(
-                    color: Colors.purple,
+                    color: Theme.of(context).primaryColor,
                     width: 2,
                   )),
                   padding: EdgeInsets.all(8),
                   child: Text(
-                    '${transactions[item].amount}đ',
+                    '${transactions[item].amount.toStringAsFixed(0)}đ',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
-                      color: Colors.purple,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
