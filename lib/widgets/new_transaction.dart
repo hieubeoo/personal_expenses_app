@@ -11,7 +11,6 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titleControler = TextEditingController();
-
   final amountControler = TextEditingController();
 
   void SubmitData() {
@@ -29,34 +28,32 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Card(
-        elevation: 5,
-        child: Container(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              TextField(
-                decoration: InputDecoration(labelText: 'Vật phẩm'),
-                controller: titleControler,
-                onSubmitted: (_) => SubmitData(),
-                // onChanged: (value) => titleInput = value,
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Số tiền'),
-                controller: amountControler,
-                keyboardType: TextInputType.number,
-                onSubmitted: (_) => SubmitData(),
-                // onChanged: (value) => amountInput = value,
-              ),
-              FlatButton(
-                onPressed: SubmitData,
-                child: Text('Thêm'),
-                textColor: Colors.purple,
-              )
-            ],
-          ),
+    return Card(
+      elevation: 5,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            TextField(
+              decoration: InputDecoration(labelText: 'Vật phẩm'),
+              controller: titleControler,
+              onSubmitted: (_) => SubmitData(),
+              // onChanged: (value) => titleInput = value,
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Số tiền'),
+              controller: amountControler,
+              keyboardType: TextInputType.number,
+              onSubmitted: (_) => SubmitData(),
+              // onChanged: (value) => amountInput = value,
+            ),
+            FlatButton(
+              onPressed: SubmitData,
+              child: Text('Thêm'),
+              textColor: Colors.purple,
+            )
+          ],
         ),
       ),
     );
