@@ -1,13 +1,11 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-
   TransactionList(this.transactions);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +14,7 @@ class TransactionList extends StatelessWidget {
           ? Column(
               children: [
                 Text(
-                  'No transactions added yet!',
+                  'Trống',
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 SizedBox(
@@ -32,7 +30,25 @@ class TransactionList extends StatelessWidget {
             )
           : ListView.builder(
               itemBuilder: (ctx, index) {
+                // return ListTile(
+                //   // leading: CircleAvatar(
+                //   //   radius: 40,
+                //   //   child: Padding(
+                //   //     padding: EdgeInsets.all(5),
+                //   //     child: Text(
+                //   //         '${transactions[index].amount.toStringAsFixed(0)}đ'),
+                //   //   ),
+                //   // ),
+                //   title: Text(
+                //     transactions[index].title,
+                //     style: Theme.of(context).textTheme.headline6,
+                //   ),
+                //   subtitle: Text(
+                //     DateFormat.yMEd().format(transactions[index].dateTime),
+                //   ),
+                // );
                 return Card(
+                  margin: EdgeInsets.all(4),
                   child: Row(
                     children: [
                       Container(
@@ -41,6 +57,7 @@ class TransactionList extends StatelessWidget {
                           horizontal: 15,
                         ),
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           border: Border.all(
                             color: Theme.of(context).primaryColor,
                             width: 2,
@@ -61,7 +78,7 @@ class TransactionList extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             transactions[index].title,
-                            style: Theme.of(context).textTheme.title,
+                            style: Theme.of(context).textTheme.headline6,
                           ),
                           Text(
                             DateFormat.yMMMd()
@@ -71,6 +88,11 @@ class TransactionList extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () {},
+                        color: Theme.of(context).errorColor,
                       ),
                     ],
                   ),

@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           accentColor: Colors.blue,
           fontFamily: 'Quicksand',
+          errorColor: Colors.blueGrey,
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: TextStyle(
                   fontFamily: 'OpenSans',
@@ -54,11 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime choosenDate) {
     final newTx = Transaction(
       title: txTitle,
       amount: txAmount,
-      dateTime: DateTime.now(),
+      dateTime: choosenDate,
       id: DateTime.now().toString(),
     );
 
@@ -87,17 +89,18 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(
           'Personal Expenses',
         ),
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.add),
-        //     onPressed: () => _startAddNewTransaction(context),
-        //   ),
-        // ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text(
+                'Thống kê chi tiêu 7 ngày gần nhất:',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
             Chart(_recentTransaction),
             TransactionList(_userTransactions),
           ],
