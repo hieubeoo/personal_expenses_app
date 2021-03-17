@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/transaction.dart';
+import '../widgets/transaction_item.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -50,67 +51,8 @@ class TransactionList extends StatelessWidget {
               //     DateFormat.yMEd().format(transactions[index].dateTime),
               //   ),
               // );
-              return Card(
-                margin: EdgeInsets.all(4),
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                          width: 2,
-                        ),
-                      ),
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        '${transactions[index].amount.toStringAsFixed(0)}đ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            transactions[index].title,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          Text(
-                            DateFormat.yMMMd()
-                                .format(transactions[index].dateTime),
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    MediaQuery.of(context).size.width > 460
-                        ? TextButton.icon(
-                            onPressed: () => deleteTX(transactions[index].id),
-                            icon: Icon(Icons.delete),
-                            label: Text('Xóa'),
-                            style: TextButton.styleFrom(
-                              primary: Colors.blueGrey,
-                            ),
-                          )
-                        : IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () => deleteTX(transactions[index].id),
-                            color: Theme.of(context).errorColor,
-                          ),
-                  ],
-                ),
-              );
+              return TransactionItem(
+                  transaction: transactions[index], deleteTX: deleteTX);
             },
             itemCount: transactions.length,
           );

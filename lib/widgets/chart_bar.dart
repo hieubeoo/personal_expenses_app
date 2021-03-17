@@ -6,7 +6,7 @@ class CharBar extends StatelessWidget {
   final double spendingAmount;
   final double spendingPctOfTotal;
 
-  CharBar({this.label, this.spendingAmount, this.spendingPctOfTotal});
+  const CharBar({this.label, this.spendingAmount, this.spendingPctOfTotal});
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
